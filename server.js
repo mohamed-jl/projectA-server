@@ -7,6 +7,8 @@ import userRoutes from './routes/userRoutes.js';
 import documentRoutes from './routes/documentRoutes.js';
 import fileRoutes from './routes/fileRoutes.js';
 import linkRoutes from './routes/linkRoutes.js';
+import submissionRoutes from './routes/submissionRoutes.js';
+import flightRoutes from './routes/flightRoutes.js';
 
 
 dotenv.config();
@@ -47,6 +49,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/documents', documentRoutes);
 app.use('/api/files', fileRoutes);
 app.use('/api/links', linkRoutes);
+app.use('/api/submissions', submissionRoutes);
+app.use('/api/flights', flightRoutes);
 
 app.get('/', (req, res) => {
   res.send('Welcome to the flight reporter API ✈️🧑‍✈️');
@@ -55,6 +59,7 @@ app.get('/', (req, res) => {
 
 
 // Start server
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on http://localhost:${process.env.PORT}`);
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on http://0.0.0.0:${PORT} (accessible from emulator via http://10.0.2.2:${PORT})`);
 });
